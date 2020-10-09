@@ -4,22 +4,21 @@
  */
 const groupThePeople = (groupSizes) => {
   const out = [];
-  // use obj to store arrays where the key is the length and the value is array
-  const map = {};
+  // use map to store arrays where the key is the size and the value is array
+  const map = new Map();
   // iterate array
-  for (let i = 0; i < groupSizes.length; i++) {
-    // get value to determine array length
-    const len = groupSizes[i];
-    // if array of that length doesnt exist, create an array of that length
-    if (!map[len]) map[len] = [];
+  groupSizes.forEach((size, i) => {
+    // if array of that size doesnt exist, create an array of that size
+    if (!map.has(size)) map.set(size, []);
     // push index in that array
-    map[len].push(i);
+    const group = map.get(size);
+    group.push(i);
     // if that array is filled, push that array to output and delete from obj
-    if (map[len].length === len) {
-      out.push(map[len]);
-      map[len] = undefined;
+    if (group.length === size) {
+      out.push(group);
+      map.delete(size);
     }
-  }
+  });
   // return output
   return out;
 };
