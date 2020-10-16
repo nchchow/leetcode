@@ -3,9 +3,9 @@
  * @return {string[]}
  */
 const findWords = (words) => {
-  const t = new Set(["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"]);
-  const m = new Set(["a", "s", "d", "f", "g", "h", "j", "k", "l"]);
-  const b = new Set(["z", "x", "c", "v", "b", "n", "m"]);
+  const t = new Set("qwertyuiop");
+  const m = new Set("asdfghjkl");
+  const b = new Set("zxcvbnm");
 
   return words.filter((word) => {
     const chars = word.toLowerCase().split("");
