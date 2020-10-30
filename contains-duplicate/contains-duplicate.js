@@ -1,0 +1,19 @@
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+// one line
+const containsDuplicate = (nums) => new Set(nums).size !== nums.length;
+
+// optimized solution
+const containsDuplicate = (nums) => {
+  const set = new Set();
+  for (let i = 0; i < nums.length; i++) {
+    if (set.has(nums[i])) {
+      return true;
+    } else {
+      set.add(nums[i]);
+    }
+  }
+  return false;
+};
