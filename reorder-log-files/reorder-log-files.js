@@ -10,13 +10,11 @@ const reorderLogFiles = (logs) => {
     !isNaN(log.slice(-1)) ? digs.push(log) : lets.push(log);
   });
   // sort
-  lets.sort((a, b) => {
-    const arrA = a.split(" ");
-    arrA.shift();
-    const arrB = b.split(" ");
-    arrB.shift();
-    return arrA.join(" ").localeCompare(arrB.join(" ")) || a.localeCompare(b);
-  });
+  lets.sort(
+    (a, b) =>
+      a.slice(a.indexOf(" ") + 1).localeCompare(b.slice(b.indexOf(" ") + 1)) ||
+      a.localeCompare(b) // if identical logs, compare entire strings
+  );
   digs.sort((a, b) => a - b);
   // merge
   return lets.concat(digs);
