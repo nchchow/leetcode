@@ -3,7 +3,28 @@
  * @param {string} chars
  * @return {number}
  */
-// fastest solution if chars length is small
+// fastest solution
+const countCharacters = (words, chars) => {
+  // use array to count chars
+  const charCounts = chars.split("").reduce((arr, char) => {
+    arr[char.charCodeAt() - 97]++;
+    return arr;
+  }, new Array(26).fill(0));
+  const isWordGood = (word, charCounts) => {
+    for (const char of word) {
+      const i = char.charCodeAt() - 97;
+      if (!charCounts[i]) return false;
+      charCounts[i]--;
+    }
+    return true;
+  };
+  return words.reduce((len, word) => {
+    if (isWordGood(word, charCounts.slice())) return len + word.length;
+    return len;
+  }, 0);
+};
+
+// faster solution if chars length is small
 const countCharacters = (words, chars) => {
   return words
     .filter((word) => {
