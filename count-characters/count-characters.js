@@ -18,10 +18,11 @@ const countCharacters = (words, chars) => {
     }
     return true;
   };
-  return words.reduce((len, word) => {
-    if (isWordGood(word, charCounts.slice())) return len + word.length;
-    return len;
-  }, 0);
+  return words.reduce(
+    (len, word) =>
+      isWordGood(word, charCounts.slice()) ? len + word.length : len,
+    0
+  );
 };
 
 // faster solution if chars length is small
